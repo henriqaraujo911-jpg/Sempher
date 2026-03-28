@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sempher FlyTeam Project</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ============================================================
+       TELA DE LOGIN
+  ============================================================ -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-bg-grid"></div>
+    <div class="login-glow-left"></div>
+    <div class="login-glow-right"></div>
+
+    <div class="login-box">
+      <!-- Logo -->
+      <div class="login-logo">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="40,4 74,23 74,57 40,76 6,57 6,23" fill="#0A1F44" stroke="#1E5AA8" stroke-width="2.5"/>
+          <polyline points="16,46 30,32 40,40 50,32 64,46" stroke="#FF8C2B" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="22,54 36,40 40,44 44,40 58,54" stroke="#F2C94C" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="40" r="4" fill="#FF8C2B"/>
+        </svg>
+      </div>
+
+      <div class="login-brand">
+        <span class="login-brand-name">SEMPHER FLYTEAM</span>
+        <span class="login-brand-sub">PROJECT · TEAM MANAGEMENT</span>
+      </div>
+
+      <div class="login-divider"></div>
+
+      <!-- Formulário -->
+      <div class="login-form" id="loginForm">
+        <div class="login-field-group">
+          <label class="login-label">LOGIN</label>
+          <input class="login-input" id="loginUser" type="text" placeholder="Usuário" autocomplete="off" />
+        </div>
+        <div class="login-field-group">
+          <label class="login-label">SENHA</label>
+          <div class="login-pass-wrap">
+            <input class="login-input" id="loginPass" type="password" placeholder="••••••••" autocomplete="off" />
+            <button class="login-eye" id="loginEye" type="button" title="Mostrar/ocultar senha">👁</button>
+          </div>
+        </div>
+
+        <div class="login-error" id="loginError">Credenciais inválidas. Tente novamente.</div>
+
+        <button class="login-btn" id="loginBtn">ACESSAR COMO MANAGER</button>
+
+        <div class="login-separator"><span>ou</span></div>
+
+        <button class="login-btn-guest" id="loginGuest">👁 Entrar como Visitante</button>
+
+        <p class="login-hint">Visitantes podem visualizar todos os dados, mas não podem editar.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       APP PRINCIPAL (oculto até login)
+  ============================================================ -->
+  <div id="appRoot" class="app-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="30,3 55,17 55,43 30,57 5,43 5,17" fill="#0A1F44" stroke="#1E5AA8" stroke-width="2"/>
+            <polyline points="12,34 22,24 30,30 38,24 48,34" stroke="#FF8C2B" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="16,40 26,30 30,34 34,30 44,40" stroke="#F2C94C" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="30" cy="30" r="3" fill="#FF8C2B"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">SEMPHER</span>
+          <span class="brand-sub">FlyTeam Project</span>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Fechar menu">&#10005;</button>
+      </div>
+
+      <!-- Badge de sessão -->
+      <div class="session-badge" id="sessionBadge">
+        <!-- preenchido via JS -->
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#" class="nav-link active" data-page="dashboard"><span class="nav-icon">⬡</span><span class="nav-label">Dashboard</span></a></li>
+          <li><a href="#" class="nav-link" data-page="pilotos"><span class="nav-icon">👥</span><span class="nav-label">Pilotos</span></a></li>
+          <li><a href="#" class="nav-link" data-page="titulos"><span class="nav-icon">🏆</span><span class="nav-label">Títulos</span></a></li>
+          <li class="nav-group-label">CAMPEONATOS</li>
+          <li><a href="#" class="nav-link" data-page="camp-ativos"><span class="nav-icon">🔴</span><span class="nav-label">Em Andamento</span></a></li>
+          <li><a href="#" class="nav-link" data-page="camp-futuros"><span class="nav-icon">🚀</span><span class="nav-label">Futuros</span></a></li>
+          <li><a href="#" class="nav-link" data-page="camp-passados"><span class="nav-icon">📜</span><span class="nav-label">Histórico</span></a></li>
+          <li class="nav-group-label">ANÁLISE</li>
+          <li><a href="#" class="nav-link" data-page="estatisticas"><span class="nav-icon">📊</span><span class="nav-label">Estatísticas</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <span class="sidebar-season">Temporada 2025</span>
+        <button class="logout-btn" id="logoutBtn">&#128274; Sair</button>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN WRAPPER -->
+    <div class="main-wrapper" id="mainWrapper">
+
+      <header class="topbar">
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="topbar-breadcrumb" id="breadcrumb">Dashboard</div>
+        <div class="topbar-right">
+          <div class="role-topbar-badge" id="roleTopbarBadge"><!-- JS --></div>
+          <div class="live-badge"><span class="pulse"></span>AO VIVO</div>
+          <div class="topbar-season">2025</div>
+        </div>
+      </header>
+
+      <!-- DASHBOARD -->
+      <section class="page active" id="page-dashboard">
+        <div class="page-inner">
+          <div class="hero-banner">
+            <div class="hero-bg-grid"></div>
+            <div class="hero-content">
+              <div class="hero-logo">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="40,4 74,23 74,57 40,76 6,57 6,23" fill="#0A1F44" stroke="#1E5AA8" stroke-width="2.5"/>
+                  <polyline points="16,46 30,32 40,40 50,32 64,46" stroke="#FF8C2B" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="22,54 36,40 40,44 44,40 58,54" stroke="#F2C94C" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="40" cy="40" r="4" fill="#FF8C2B"/>
+                </svg>
+              </div>
+              <div class="hero-text">
+                <h1 class="hero-title">SEMPHER<span class="accent"> FLYTEAM</span></h1>
+                <p class="hero-subtitle">PROJECT · EST. 2021</p>
+                <p class="hero-tagline">Velocidade. Precisão. Vitória.</p>
+              </div>
+            </div>
+            <div class="hero-stripe"></div>
+          </div>
+
+          <div class="kpi-grid">
+            <div class="kpi-card"><div class="kpi-icon">👥</div><div class="kpi-value" id="kpiPilotos">0</div><div class="kpi-label">Pilotos</div><div class="kpi-sub">ativos na equipe</div></div>
+            <div class="kpi-card"><div class="kpi-icon">🏆</div><div class="kpi-value" id="kpiTitulos">0</div><div class="kpi-label">Títulos</div><div class="kpi-sub">conquistas totais</div></div>
+            <div class="kpi-card"><div class="kpi-icon">🎯</div><div class="kpi-value" id="kpiCamp">0</div><div class="kpi-label">Campeonatos</div><div class="kpi-sub">em andamento</div></div>
+            <div class="kpi-card"><div class="kpi-icon">🏁</div><div class="kpi-value" id="kpiVitorias">0</div><div class="kpi-label">Vitórias</div><div class="kpi-sub">acumuladas</div></div>
+          </div>
+
+          <div class="dash-bottom">
+            <div class="featured-driver-card" id="featuredDriver"><div class="featured-label">⭐ PILOTO DESTAQUE</div></div>
+            <div class="next-race-card" id="nextRaceCard"><div class="next-race-label">🔴 PRÓXIMA CORRIDA</div></div>
+            <div class="last-results-card">
+              <div class="card-header-title">📋 RESULTADOS RECENTES</div>
+              <ul class="results-list" id="recentResults"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PILOTOS -->
+      <section class="page" id="page-pilotos">
+        <div class="page-inner">
+          <div class="page-header">
+            <h2 class="page-title">👥 Gestão de Pilotos</h2>
+            <div class="filter-bar">
+              <button class="filter-btn active" data-filter="todos">Todos</button>
+              <button class="filter-btn" data-filter="Ativo">Ativos</button>
+              <button class="filter-btn" data-filter="Reserva">Reservas</button>
+              <button class="filter-btn" data-filter="Inativo">Inativos</button>
+            </div>
+          </div>
+          <div class="pilots-grid" id="pilotsGrid"></div>
+        </div>
+      </section>
+
+      <!-- PERFIL MODAL -->
+      <div class="pilot-profile-overlay" id="pilotProfileOverlay">
+        <div class="pilot-profile-modal" id="pilotProfileModal">
+          <button class="profile-close" id="profileClose">&#10005;</button>
+        </div>
+      </div>
+
+      <!-- TÍTULOS -->
+      <section class="page" id="page-titulos">
+        <div class="page-inner">
+          <div class="page-header"><h2 class="page-title">🏆 Títulos da Equipe</h2></div>
+          <div class="titles-grid" id="titlesGrid"></div>
+        </div>
+      </section>
+
+      <!-- CAMP ATIVOS -->
+      <section class="page" id="page-camp-ativos">
+        <div class="page-inner">
+          <div class="page-header"><h2 class="page-title">🔴 Campeonatos em Andamento</h2></div>
+          <div class="champ-grid" id="champActivesGrid"></div>
+        </div>
+      </section>
+
+      <!-- CAMP FUTUROS -->
+      <section class="page" id="page-camp-futuros">
+        <div class="page-inner">
+          <div class="page-header"><h2 class="page-title">🚀 Campeonatos Futuros</h2></div>
+          <div class="champ-grid" id="champFutureGrid"></div>
+        </div>
+      </section>
+
+      <!-- CAMP PASSADOS -->
+      <section class="page" id="page-camp-passados">
+        <div class="page-inner">
+          <div class="page-header"><h2 class="page-title">📜 Histórico de Campeonatos</h2></div>
+          <div class="table-wrapper">
+            <table class="data-table" id="champPastTable">
+              <thead><tr>
+                <th>Campeonato</th><th>Ano</th><th>Participantes</th><th>Colocação</th><th>Destaque</th>
+              </tr></thead>
+              <tbody id="champPastBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ESTATÍSTICAS -->
+      <section class="page" id="page-estatisticas">
+        <div class="page-inner">
+          <div class="page-header"><h2 class="page-title">📊 Estatísticas Gerais</h2></div>
+          <div class="stats-big-grid" id="statsBigGrid"></div>
+          <div class="section-subtitle">Desempenho por Piloto</div>
+          <div class="table-wrapper">
+            <table class="data-table" id="statsTable">
+              <thead><tr>
+                <th>#</th><th>Piloto</th><th>Corridas</th><th>Vitórias</th><th>Pódios</th><th>Taxa de Vitória</th><th>Pontos</th>
+              </tr></thead>
+              <tbody id="statsTableBody"></tbody>
+            </table>
+          </div>
+          <div class="section-subtitle">Taxa de Vitória (Comparativo)</div>
+          <div class="bar-chart" id="barChart"></div>
+        </div>
+      </section>
+
+    </div><!-- /main-wrapper -->
+  </div><!-- /appRoot -->
+
+  <script src="script.js"></script>
+</body>
+</html>
